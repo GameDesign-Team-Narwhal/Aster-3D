@@ -3,13 +3,42 @@ using System.Collections;
 
 public class ShipUserControl : MonoBehaviour {
 
+	public Vector2 mouseSpeed = new Vector2(1, 1);
+	public Vector2 mouseExponent = new Vector2(3, 3); //must be odd!
+
+	private KeyCode fire1Key = KeyCode.Mouse0;
+	private KeyCode fire2Key = KeyCode.Mouse1;
+	private KeyCode backwardKey = KeyCode.S;
+	private KeyCode forwardKey = KeyCode.W;
+
+	Rigidbody shipBody;
+
 	// Use this for initialization
 	void Start () {
+		shipBody = GetComponent<Rigidbody>();
 	
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void Update () 
+	{
+		Vector2 mousePercentage;
+
+		mousePercentage.x = ((Input.mousePosition.x / Screen.width) * 2) - 1;
+		mousePercentage.y = ((Input.mousePosition.y / Screen.height) * 2) - 1;
+
+
+		Debug.Log("mouse: " + mousePercentage);
 	
+		shipBody.AddTorque(new Vector3(-1 * Mathf.Pow(mousePercentage.y, mouseExponent.y) * mouseSpeed.y, Mathf.Pow(mousePercentage.x, mouseExponent.x) * mouseSpeed.x, 0));
+
+		if(Input.GetKeyDown(forwardKey))
+		{
+			shipBody.AddForce(new Vector3(0, 0, 100));
+		}
+		else if(Input.GetKeyDown(backwardKey))
+		{
+			shipBody.AddForce(new Vector3(0, 0, -100));
+		}
 	}
 }
