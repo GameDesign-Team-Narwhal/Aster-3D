@@ -4,4 +4,20 @@
 InputManager:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Axes: []
+  m_Axes:
+  - serializedVersion: 3
+    m_Name: Ship Roll
+    descriptiveName: 
+    descriptiveNegativeName: 
+    negativeButton: q
+    positiveButton: e
+    altNegativeButton: 
+    altPositiveButton: 
+    gravity: 0
+    dead: 0
+    sensitivity: 0
+    snap: 0
+    invert: 0
+    type: 1
+    axis: 2
+    joyNum: 0
